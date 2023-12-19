@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shoxboz ToDo</title>
+    <link rel="icon" href="https://yt3.googleusercontent.com/ytc/AOPolaR0EkplxAGW49udCp5Ukh0VOIVLOBRHyAUDKFbHTg=s900-c-k-c0x00ffffff-no-rj" type="image/x-icon">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        :root {
+    --day-background-image: url(https://www.joshsprague.com/wp-content/uploads/2015/05/online-tips-real-estate-agent.jpg);
+    --night-background-image: url(https://cojo.ru/wp-content/uploads/2022/12/stilnyi-fon-34.webp);
+}
+
+        body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    padding: 20px;
+    margin: 0;
+    transition: background-color 0.3s ease;
+}
+
+body.light-mode {
+    background-color: #f4f4f4;
+    color: #000;
+    background-image: var(--day-background-image);
+}
+
+body.dark-mode {
+    background-color: #333;
+    color: #fff;
+    background-image: var(--night-background-image);
+}
+
+
+        section {
+            position: relative;
+            max-width: 400px;
+            background-color: transparent;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            border-radius: 20px;
+            backdrop-filter: blur(55px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 2rem;
+            margin-top: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .inputbox {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+    max-width: 310px;
+}
+
+.inputbox label {
+    color: #fff;
+    font-size: 1rem;
+    margin-bottom: 5px; /* Добавлен отступ снизу */
+}
+
+.inputbox input {
+    width: 100%;
+    height: 40px;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    padding: 0 10px;
+    color: #fff;
+    border-bottom: 2px solid #fff;
+}
+
+        .forget {
+            margin: 20px 0;
+            font-size: 0.85rem;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .forget label {
+            display: flex;
+            align-items: center;
+        }
+
+        .forget label input {
+            margin-right: 5px;
+        }
+
+        .forget a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .forget a:hover {
+            text-decoration: underline;
+        }
+
+        button {
+            width: 100%;
+            height: 40px;
+            border-radius: 20px;
+            background-color: rgba(255, 255, 255, 1);
+            border: none;
+            outline: none;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.4s ease;
+            margin-top: 15px;
+        }
+
+        button:hover {
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .register {
+            font-size: 0.9rem;
+            color: #fff;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .register p a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .register p a:hover {
+            text-decoration: underline;
+        }
+
+        .theme-toggle {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+
+        .modal-btn {
+            display: none;
+        }
+    </style>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="script.js"></script>
+</head>
+
+<body class="light-mode">
+    <div class="theme-toggle" onclick="toggleTheme()">🌙</div>
+    <section>
+        <h1>Shaxboz ToDo</h1>
+
+        <form id="taskForm">
+            <div class="inputbox">
+                <label for="title">Название:</label>
+                <input type="text" id="title" required />
+            </div>
+
+            <div class="inputbox">
+                <label for="body">Описание:</label>
+                <input type="text" id="body" required />
+            </div>
+
+            <div class="inputbox">
+                <label for="userId">ID пользователя (1-10):</label>
+                <input type="number" id="userId" min="1" max="10" required />
+            </div>
+
+            <div class="inputbox">
+                <label for="important">Важная:</label>
+                <input type="checkbox" id="important" />
+            </div>
+
+            <button type="submit">Добавить/Редактировать</button>
+            <div class="error" id="userIdError"></div>
+        </form>
+
+        <div id="tasks"></div>
+
+        <div id="loader" class="loader"></div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
